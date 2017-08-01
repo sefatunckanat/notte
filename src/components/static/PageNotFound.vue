@@ -2,7 +2,7 @@
 	<div id="pageNotFound" class="gradient_background">
 		<div>
 			<div>
-				Page not found <div class="sad icon"><i></i></div>
+				Page not found.
 			</div>
 			<router-link to="/">
 				<div class="home_link">Home Page</div>
