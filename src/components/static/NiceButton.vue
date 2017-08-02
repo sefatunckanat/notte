@@ -17,7 +17,6 @@ export default{
 		for (var i = 0; i < this.option.length; i++) {
 			this.class += " "+this.option[i];
 		}
-		console.log(this.class)
 	},
 	computed: {
 		classObject: function(){
@@ -42,7 +41,7 @@ export default{
 		&.primary
 			background: darken($primary,$dark)
 	&.big
-		padding: 20px
+		padding: 15px 20px
 	&.small
 		padding: 5px
 	&.flat

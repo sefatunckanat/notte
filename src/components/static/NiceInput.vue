@@ -59,7 +59,6 @@ export default{
   overflow: hidden;
   z-index: 1;
   box-sizing: border-box;
-  font-weight: lighter;
   font-size: 14px;
   border-radius: 2px;
 	&.active{

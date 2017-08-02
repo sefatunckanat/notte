@@ -7,7 +7,7 @@
 			<div class="content">
 				<NiceInput v-on:onChange="setUsername" placeholder="Username"/>
 				<NiceInput v-on:onChange="setPassword" placeholder="Password" type="password"/>
-				<NiceButton value="Sign Up" v-bind:option="['primary','round']"/>
+				<NiceButton value="Sign Up" v-bind:option="['primary','round','big']"/>
 			</div>
 		</div>
 	</div>
@@ -57,10 +57,11 @@ export default{
 		color: #333
 		overflow: hidden
 		border-radius: 3px
+		box-shadow: 0 2px 4px rgba(#000,0.1)
 		.head
 			font-weight: bold
 			color: #fff
-			padding: 10px
+			padding: 15px
 			font-size: 20px
 		.content
 			padding: 10px
