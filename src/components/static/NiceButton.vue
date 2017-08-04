@@ -45,6 +45,8 @@ export default{
 		cursor: pointer
 		&.primary
 			background: darken($primary,$dark)
+		&.danger
+			background: darken($danger,$dark)
 	&.big
 		padding: 15px 20px
 	&.small
@@ -56,6 +58,9 @@ export default{
 	&.primary
 		background: $primary
 		color: #fff
+	&.danger
+		color: #fff
+		background: $danger
 </style>
 
 

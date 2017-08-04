@@ -14,7 +14,6 @@ let config = {
 };
 let app = Firebase.initializeApp(config)
 let db = app.database()
-window.database = db;
 window.firebase = app;
 
 Vue.config.productionTip = false

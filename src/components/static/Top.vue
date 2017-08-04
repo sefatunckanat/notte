@@ -23,23 +23,36 @@ export default {
     return {
       loggedIn: false,
       username: "",
-      load: false
+      load: false,
+      user: false
     }
   },
   created:function(){
     _this = this;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        _this.RefreshUI(user);
+        _this.refreshUI(user);
       }
       _this.load = true;
+      _this.routerCheck();
     });
   },
+  mounted:function(){
+    
+  },
   methods:{
-    RefreshUI:function(u){
+    refreshUI:function(u){
       this.loggedIn = true;
       this.username = u.displayName || u.email;
     },
+    routerCheck:function(){
+      if(_this.$router.history.current.path == "/sign-up" || _this.$router.history.current.path == "/sign-in"){
+        window.location.href = "/";
+      }
+      if(_this.$router.history.current.path == "/profile"){
+        window.location.href = "/";
+      }
+    }
   }
 }
 </script>

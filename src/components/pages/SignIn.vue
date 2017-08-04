@@ -6,13 +6,12 @@
 		</simplert>
 		<div class="main">
 			<div class="head gradient_background">
-				Sign Up
+				Sign In
 			</div>
 			<div class="content">
 				<NiceInput v-on:onChange="setEmail" placeholder="Email"/>
 				<NiceInput v-on:onChange="setPassword" placeholder="Password" type="password"/>
-				<NiceInput v-on:onChange="setPassword2" placeholder="Repeat Password" type="password"/>
-				<NiceButton value="Sign Up" v-bind:option="['primary','round','big']" v-on:onClick="click"/>
+				<NiceButton value="Sign In" v-bind:option="['primary','round','big']" v-on:onClick="click"/>
 			</div>
 		</div>
 	</div>
@@ -34,8 +33,7 @@ export default{
 	data(){
 		return{
 			email: '',
-			password: '',
-			password2: ''
+			password: ''
 		}
 	},
 	created:function(){
@@ -48,27 +46,15 @@ export default{
 		setPassword: function(val){
 			_this.password = val;
 		},
-		setPassword2: function(val){
-			_this.password2 = val;
-		},
 		click: function(){
-			if(this.password == this.password2){
-				firebase.auth().createUserWithEmailAndPassword(this.email,this.password).catch(function(err){
-						let obj = {
-							title: 'Sign Up Error !',
-							message: err.message,
-							type: 'error'
-						}
-						_this.$refs.simplert.openSimplert(obj)
-				});
-			}else{
-				let obj = {
-					title: 'Sign Up Error !',
-					message: "Check your passwords",
-					type: 'error'
-				}
-				_this.$refs.simplert.openSimplert(obj)
-			}
+			firebase.auth().signInWithEmailAndPassword(_this.email,_this.password).catch(function(err){
+					let obj = {
+						title: 'Sign Up Error !',
+						message: err.message,
+						type: 'error'
+					}
+					_this.$refs.simplert.openSimplert(obj)
+			});
 		}
 	}
 }

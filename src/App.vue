@@ -17,6 +17,6 @@ export default {
 </script>
 
 <style scoped>
-@import './assets/style/normalize.css'
-@import './assets/style/flexiblegs.css'
+@import './assets/style/flexiblegs.css';
+@import './assets/style/normalize.css';
 </style>

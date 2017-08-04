@@ -13,13 +13,19 @@
 <script>
 export default{
 	name: "NiceInput",
+  props:['placeholder','type','defaultValue'],
 	data () {
     return {
       state: "notSelect",
       value: ""
     }
   },
-  props:['placeholder','type'],
+  mounted:function(){
+  	if(this.defaultValue != undefined){
+  		this.value = this.defaultValue;
+  	}
+		this.onExit();
+  },
 	methods:{
 		onSelect: function(){
 			this.state = "select";
