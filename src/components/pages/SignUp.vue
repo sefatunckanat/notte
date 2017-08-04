@@ -1,5 +1,9 @@
 <template>
 	<div id="sign-up">
+		<simplert :useRadius="true"
+		          :useIcon="true"
+		          ref="simplert">
+		</simplert>
 		<div class="main">
 			<div class="head gradient_background">
 				Sign Up
@@ -7,7 +11,7 @@
 			<div class="content">
 				<NiceInput v-on:onChange="setUsername" placeholder="Username"/>
 				<NiceInput v-on:onChange="setPassword" placeholder="Password" type="password"/>
-				<NiceButton value="Sign Up" v-bind:option="['primary','round','big']"/>
+				<NiceButton value="Sign Up" v-bind:option="['primary','round','big']" v-on:onClick="click"/>
 			</div>
 		</div>
 	</div>
@@ -16,11 +20,15 @@
 <script>
 import NiceInput from './../static/NiceInput.vue'
 import NiceButton from './../static/NiceButton.vue'
+import Simplert from 'vue2-simplert'
+let _this;
+
 export default{
 	name: 'SignUp',
 	components:{
 		NiceInput,
-		NiceButton
+		NiceButton,
+		Simplert
 	},
 	data(){
 		return{
@@ -30,6 +38,10 @@ export default{
 			}
 		}
 	},
+	created:function(){
+		_this = this;
+
+	},
 	methods:{
 		setUsername: function(val){
 			this.sign_up_values.username = val;
@@ -38,7 +50,14 @@ export default{
 			this.sign_up_values.password = val;
 		},
 		click: function(){
-
+			firebase.auth().createUserWithEmailAndPassword(this.sign_up_values.username,this.sign_up_values.password).catch(function(err){
+					let obj = {
+						title: 'Sign Up Error !',
+						message: err.message,
+						type: 'error'
+					}
+					_this.$refs.simplert.openSimplert(obj)
+			});
 		}
 	}
 }

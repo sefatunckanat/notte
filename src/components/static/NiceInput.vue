@@ -5,7 +5,7 @@
 			<input v-model="value" type="password" v-on:click="onSelect" v-on:mouseleave="onExit">
 		</div>
 		<div v-if="type != 'password'">
-			<input v-model="value" v-on:change="onChange" v-on:click="onSelect" v-on:mouseleave="onExit">
+			<input v-model="value" type="text" v-on:click="onSelect" v-on:mouseleave="onExit">
 		</div>
 	</div>
 </template>
@@ -25,7 +25,6 @@ export default{
 			this.state = "select";
 		},
 		onChange: function(){
-			console.log('change')
 		},
 		onExit: function(){
 			if(this.value.length == 0){

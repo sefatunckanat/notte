@@ -6,19 +6,40 @@
       		NOTTE
       	</div>
       </router-link>
-    	<div class="menu">
-    		<router-link to="/sign-up">Sign Up</router-link>
+    	<div class="menu" v-if="load">
+        <router-link v-if="!loggedIn" to="/sign-up">Sign Up</router-link>
+        <router-link v-if="!loggedIn" to="/sign-in">Sign In</router-link>
+        <router-link v-if="loggedIn" to="/profile">{{ username }}</router-link>
     	</div>
     </div>
   </header>
 </template>
 
 <script>
+let _this;
 export default {
   name: 'Top',
   data () {
     return {
+      loggedIn: false,
+      username: "",
+      load: false
     }
+  },
+  created:function(){
+    _this = this;
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        _this.RefreshUI(user);
+      }
+      _this.load = true;
+    });
+  },
+  methods:{
+    RefreshUI:function(u){
+      this.loggedIn = true;
+      this.username = u.displayName || u.email;
+    },
   }
 }
 </script>
@@ -37,6 +58,14 @@ header{
     display: inline-block;
     line-height: 31px;
     float: right;
+    a{
+      padding: 10px;
+      border-right: 1px solid rgba(#000,0.1);
+      text-align: center;
+      &:last-child{
+        border-right: none
+      }
+    }
   }
 }
 </style>

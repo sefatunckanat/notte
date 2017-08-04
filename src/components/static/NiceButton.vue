@@ -1,5 +1,5 @@
 <template>
-	<div v-bind:class="classObject">
+	<div v-bind:class="classObject" v-on:click="onClick">
 		{{ value }}
 	</div>
 </template>
@@ -11,6 +11,11 @@ export default{
 	data(){
 		return{
 			class: "nice-button"
+		}
+	},
+	methods:{
+		onClick:function(){
+			this.$emit("onClick",true);
 		}
 	},
 	created:function(){
