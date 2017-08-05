@@ -21,15 +21,9 @@ export default {
       notes:[]
     }
   },
-  created:function(){
-    var user = firebase.auth();
-    this.user = user.currentUser;
-    _this = this;
-  },
   mounted:function(){
-    var user = firebase.auth();
-    this.user = user.currentUser;
-    if(this.user != null){
+    var user = this.user = window.userData;
+    if(user != null){
       this.getNotes();
     }else{
       this.questPage = true;
@@ -39,9 +33,10 @@ export default {
     getNotes:function(){
       console.log(">","notes/"+this.user.uid);
       var get = firebase.database().ref("notes/"+this.user.uid);
+      var _this = this;
       get.on('value',function(response){
         _this.notes = response.val();
-      })
+      });
     }
   }
 }

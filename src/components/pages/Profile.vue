@@ -2,7 +2,7 @@
 	<div id="profile">
 		<div class="head gradient_background">Profile</div>
 		<div class="content">
-			<NiceInput placeholder="Name Surname" defaultValue="Sefa Tunçkanat"/>
+			<NiceInput placeholder="Name Surname" v-bind:defaultValue="getUsername"/>
 			<NiceInput placeholder="Old Password" defaultValue="----" type="password"/>
 			<div class="wrap xl-2 xl-gutter-8">
 				<div class="col">
@@ -26,8 +26,13 @@ export default{
 		NiceInput,
 		NiceButton
 	},
-	created:function(){
-		_this = this;
+	data(){
+		return{
+			username:""
+		}
+	},
+	mounted:function(){
+		this.username = window.userData.email;
 	},
 	methods:{
 		logoutClick: function(){
@@ -39,6 +44,11 @@ export default{
 		},
 		saveClick: function(){
 
+		}
+	},
+	computed:{
+		getUsername:function(){
+			return this.username;
 		}
 	}
 }

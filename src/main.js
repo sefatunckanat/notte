@@ -12,14 +12,15 @@ let config = {
 	storageBucket: "notte-d3b82.appspot.com",
 	messagingSenderId: "4933978277"
 };
-let app = Firebase.initializeApp(config)
-let db = app.database()
-window.firebase = app;
-
 Vue.config.productionTip = false
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
-})
+let app = Firebase.initializeApp(config)
+window.firebase = app;
+firebase.auth().onAuthStateChanged(function(user) {
+	window.userData = user;
+	new Vue({
+	  el: '#app',
+	  router,
+	  template: '<App/>',
+	  components: { App }
+	});
+});

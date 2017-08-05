@@ -47,6 +47,15 @@ export default{
 				return "";
 			}
 		}
+	},
+	computed:{
+		getValue:function(){
+			this.onExit();
+			if(this.defaultValue != undefined){
+	  		this.value = this.defaultValue;
+	  	}
+			this.onExit();
+		}
 	}
 }
 </script>
