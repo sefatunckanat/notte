@@ -1,15 +1,17 @@
 <template>
 	<div id="profile">
-		<div class="head gradient_background">Profile</div>
-		<div class="content">
-			<NiceInput placeholder="Name Surname" v-bind:value="this.username"/>
-			<NiceInput placeholder="Old Password" v-bind:value="'---'" type="password"/>
-			<div class="wrap xl-2 xl-gutter-8">
-				<div class="col">
-					<NiceButton value="Logout" v-bind:option="['danger','round']" v-on:onClick="logoutClick"/>
-				</div>
-				<div class="col">
-					<NiceButton value="Save" v-bind:option="['primary','round']" v-on:onClick="saveClick"/>
+		<div class="home_wrapper">
+			<div class="head gradient_background">Profile</div>
+			<div class="content">
+				<label>Name Surname</label>
+				<input type="text" class="nice-input" v-model="this.userData.displayName"/>
+				<div class="wrap xl-2 xl-gutter-8">
+					<div class="col">
+						<NiceButton value="Logout" v-bind:option="['danger','round']" v-on:onClick="logoutClick"/>
+					</div>
+					<div class="col">
+						<NiceButton value="Save" v-bind:option="['primary','round']" v-on:onClick="saveClick"/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -28,11 +30,12 @@ export default{
 	},
 	data(){
 		return{
-			username:"",
+			userData:{},
+			password: "jky3188383"
 		}
 	},
 	mounted:function(){
-		this.username = window.userData.email;
+		this.userData = window.userData;
 	},
 	methods:{
 		logoutClick: function(){
@@ -43,7 +46,13 @@ export default{
 			});
 		},
 		saveClick: function(){
-
+			this.userData.updateProfile({
+				displayName: this.userData.displayName,
+			}).then(function(){
+        window.location.href = "/";
+			}).catch(function(err){
+				console.log(err);
+			})
 		}
 	}
 }
@@ -65,6 +74,24 @@ export default{
 		overflow: hidden
 		border-radius: 3px
 		box-shadow: 0 2px 4px rgba(#000,0.1)
+		label
+			color: #555
 		.nice-input
-			margin-bottom: 10px
+		  border: 1px solid rgba(#000,0.2)
+		  position: relative
+		  padding: 20px 10px
+		  color: #333
+		  font-family: sans-serif
+		  transition: 0.2s
+		  background: #fff
+		  overflow: hidden
+		  z-index: 1
+		  box-sizing: border-box
+		  font-size: 14px
+		  border-radius: 2px
+		  padding: 15px 10px
+		  outline: none
+		  display: block
+		  width: 100%
+		  margin-bottom: 10px
 </style>

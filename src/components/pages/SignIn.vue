@@ -9,8 +9,8 @@
 				Sign In
 			</div>
 			<div class="content">
-				<NiceInput v-on:onChange="setEmail" placeholder="Email"/>
-				<NiceInput v-on:onChange="setPassword" placeholder="Password" type="password"/>
+				<NiceInput v-on:onChange="getEmail" placeholder="Email"/>
+				<NiceInput v-on:onChange="getPassword" placeholder="Password" type="password"/>
 				<NiceButton value="Sign In" v-bind:option="['primary','round','big']" v-on:onClick="click"/>
 			</div>
 		</div>
@@ -40,10 +40,10 @@ export default{
 		_this = this;
 	},
 	methods:{
-		setEmail: function(val){
+		getEmail: function(val){
 			_this.email = val;
 		},
-		setPassword: function(val){
+		getPassword: function(val){
 			_this.password = val;
 		},
 		click: function(){

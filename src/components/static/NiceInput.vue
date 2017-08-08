@@ -2,12 +2,13 @@
 	<div class="nice-input" v-bind:class="getInputState()">
 		<span v-bind:class="getInputState()">{{ placeholder }}</span>
 		<div v-if="type == 'password'">
-			<input v-model="getValue" type="password" v-on:click="onSelect" v-on:mouseleave="onExit">
+			<input v-model="orjinalValue" type="password" v-on:click="onSelect" v-on:mouseleave="onExit">
 		</div>
 		<div v-if="type != 'password'">
-			<input v-model="getValue" type="text" v-on:click="onSelect" v-on:mouseleave="onExit">
+			<input v-model="orjinalValue" type="text" v-on:click="onSelect" v-on:mouseleave="onExit">
 		</div>
 	</div>
+	<!-- FIX : Props sorunu çözülmesi gerek dışarıdan değer gelince hata ile karşılaşıyor. -->
 </template>
 
 <script>
@@ -21,7 +22,6 @@ export default{
     }
   },
   mounted:function(){
-  	console.log(this.value)
   	if(this.value != undefined){
   		this.orjinalValue = this.value;
   	}
@@ -47,13 +47,6 @@ export default{
 			}else{
 				return "";
 			}
-		}
-	},
-	computed:{
-		getValue:function(){
-			this.orjinalValue = this.value;
-			this.onExit();
-			return this.value;
 		}
 	}
 }
