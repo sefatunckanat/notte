@@ -3,8 +3,17 @@
     <div class="home_wrapper">
       <div v-for="note in notes" class="notte" v-if="!questPage">
         <div v-bind:class="getClass(note.priotify)">
-          <h1>{{ note.title }} <span>{{note.createdTime}}</span></h1>
+          <h1>{{ note.title }}</h1>
           <p>{{ trim(note.detail) }}</p>
+          <div class="detail">
+            <span>{{note.createdTime}}</span>
+            <span class="priotify"><span class="icon"></span></span>
+            <div class="tags">
+              <div class="tag" v-for="tag in note.tags">
+                #{{ tag }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div v-if="questPage">
@@ -64,12 +73,45 @@ export default {
   padding: 10px 10px 0
   .content
     background: #fafafa
-    padding: 10px
+    padding: 10px 10px 0
     overflow: hidden
     border: 1px solid $border
     border-radius: $radius
+    &.priotify-0 .icon
+      background: $primary
+    &.priotify-1 .icon
+      background: $secondary
+    &.priotify-2 .icon
+      background: $danger
     h1,p
       margin: 0
+    .detail
+      margin: 10px 0
+      padding-top: 5px
+      color: #777
+      font-size: 12px
+      height: 20px
+      span
+        display: inline-block
+      .tags
+        float: right
+        margin-right: 10px
+        .tag
+          display: inline-block
+          vertical-align: top
+          float: left
+          padding: 0 3px
+      .priotify
+        float: right
+        .icon
+          vertical-align: top
+          width: 30px
+          height: 13px
+          display: inline-block
+          border-radius: 2px
+          margin-left: 5px
+
+
 .new-notte
   width: 50px
   height: 50px
