@@ -2,10 +2,10 @@
 	<div class="nice-input" v-bind:class="getInputState()">
 		<span v-bind:class="getInputState()">{{ placeholder }}</span>
 		<div v-if="type == 'password'">
-			<input v-model="value" type="password" v-on:click="onSelect" v-on:mouseleave="onExit">
+			<input v-model="getValue" type="password" v-on:click="onSelect" v-on:mouseleave="onExit">
 		</div>
 		<div v-if="type != 'password'">
-			<input v-model="value" type="text" v-on:click="onSelect" v-on:mouseleave="onExit">
+			<input v-model="getValue" type="text" v-on:click="onSelect" v-on:mouseleave="onExit">
 		</div>
 	</div>
 </template>
@@ -13,16 +13,17 @@
 <script>
 export default{
 	name: "NiceInput",
-  props:['placeholder','type','defaultValue'],
+  props:['placeholder','type','value'],
 	data () {
     return {
       state: "notSelect",
-      value: ""
+      orjinalValue: ""
     }
   },
   mounted:function(){
-  	if(this.defaultValue != undefined){
-  		this.value = this.defaultValue;
+  	console.log(this.value)
+  	if(this.value != undefined){
+  		this.orjinalValue = this.value;
   	}
 		this.onExit();
   },
@@ -33,12 +34,12 @@ export default{
 		onChange: function(){
 		},
 		onExit: function(){
-			if(this.value.length == 0){
+			if(this.orjinalValue.length == 0){
 				this.state = "notSelect";
 			}else{
 				this.state = "edited";
 			}
-			this.$emit("onChange",this.value);
+			this.$emit("onChange",this.orjinalValue);
 		},
 		getInputState: function(){
 			if(this.state == "select" || this.state == "edited"){
@@ -50,11 +51,9 @@ export default{
 	},
 	computed:{
 		getValue:function(){
+			this.orjinalValue = this.value;
 			this.onExit();
-			if(this.defaultValue != undefined){
-	  		this.value = this.defaultValue;
-	  	}
-			this.onExit();
+			return this.value;
 		}
 	}
 }

@@ -2,8 +2,8 @@
 	<div id="profile">
 		<div class="head gradient_background">Profile</div>
 		<div class="content">
-			<NiceInput placeholder="Name Surname" v-bind:defaultValue="getUsername"/>
-			<NiceInput placeholder="Old Password" defaultValue="----" type="password"/>
+			<NiceInput placeholder="Name Surname" v-bind:value="this.username"/>
+			<NiceInput placeholder="Old Password" v-bind:value="'---'" type="password"/>
 			<div class="wrap xl-2 xl-gutter-8">
 				<div class="col">
 					<NiceButton value="Logout" v-bind:option="['danger','round']" v-on:onClick="logoutClick"/>
@@ -28,7 +28,7 @@ export default{
 	},
 	data(){
 		return{
-			username:""
+			username:"",
 		}
 	},
 	mounted:function(){
@@ -44,11 +44,6 @@ export default{
 		},
 		saveClick: function(){
 
-		}
-	},
-	computed:{
-		getUsername:function(){
-			return this.username;
 		}
 	}
 }
