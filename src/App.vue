@@ -19,4 +19,7 @@ export default {
 <style scoped>
 @import './assets/style/flexiblegs.css';
 @import './assets/style/normalize.css';
+#app{
+	padding-top: 51px;
+}
 </style>

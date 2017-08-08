@@ -56,6 +56,11 @@ header{
 	color: #fff;
 	box-shadow: 0 0 3px rgba(#000,0.1);
   padding: 10px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  left: 0;
   .logo{
     display: inline-block;
     font-size: 24px;
