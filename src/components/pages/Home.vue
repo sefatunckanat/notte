@@ -52,7 +52,6 @@ export default {
       return "content priotify-"+i;
     },
     getNotes:function(){
-      console.log(">","notes/"+this.user.uid);
       var get = firebase.database().ref("notes/"+this.user.uid);
       var _this = this;
       get.on('value',function(response){
@@ -86,7 +85,7 @@ export default {
     h1,p
       margin: 0
     .detail
-      margin: 10px 0
+      margin: 0 0 10px
       padding-top: 5px
       color: #777
       font-size: 12px

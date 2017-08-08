@@ -5,6 +5,7 @@ import PageNotFound from '@/components/static/PageNotFound'
 import SignUp from '@/components/pages/SignUp'
 import SignIn from '@/components/pages/SignIn'
 import Profile from '@/components/pages/Profile'
+import NewNotte from '@/components/pages/NewNotte'
 
 Vue.use(Router)
 
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/new',
+      name: 'New',
+      component: NewNotte
     },
     {
       path: '/sign-up',
