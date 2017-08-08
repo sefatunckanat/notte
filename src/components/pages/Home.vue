@@ -1,11 +1,13 @@
 <template>
 	<div id="home">
-    <div v-for="note in notes" v-if="!questPage">
-      <h1>{{ note.title }} <span>{{note.createdTime}}</span></h1>
-      <p>{{ note.detail }}</p>
-    </div>
-    <div v-if="questPage">
-      <h1>Hello Demo User</h1>
+    <div class="home_wrapper">
+      <div v-for="note in notes" v-if="!questPage">
+        <h1>{{ note.title }} <span>{{note.createdTime}}</span></h1>
+        <p>{{ note.detail }}</p>
+      </div>
+      <div v-if="questPage">
+        <h1>Hello Demo User</h1>
+      </div>
     </div>
 	</div>
 </template>

@@ -21,6 +21,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	  el: '#app',
 	  router,
 	  template: '<App/>',
-	  components: { App }
+	  components: { App },
 	});
 });
