@@ -6,6 +6,7 @@ import SignUp from '@/components/pages/SignUp'
 import SignIn from '@/components/pages/SignIn'
 import Profile from '@/components/pages/Profile'
 import NewNotte from '@/components/pages/NewNotte'
+import View from '@/components/pages/View'
 
 Vue.use(Router)
 
@@ -21,6 +22,10 @@ export default new Router({
       path: '/new',
       name: 'New',
       component: NewNotte
+    },
+    {
+      path: '/view/:link',
+      component: View
     },
     {
       path: '/sign-up',

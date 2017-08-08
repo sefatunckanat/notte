@@ -36,10 +36,6 @@ export default{
 	mounted:function(){
 		this.userData = window.userData;
 		router = this.$router;
-
-		mustafa.silah.atesEt((salih)=>{
-			console.log("Ateş ediyor mubarek. 🔫");
-		})
 	},
 	methods:{
 		logoutClick: function(){
@@ -53,7 +49,7 @@ export default{
 			this.userData.updateProfile({
 				displayName: this.userData.displayName,
 			}).then(function(){
-        router.go(-1);
+        window.location.href="/";
 			}).catch(function(err){
 				console.log(err);
 			})

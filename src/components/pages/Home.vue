@@ -2,19 +2,21 @@
 	<div id="home">
     <div class="home_wrapper">
       <div v-for="note in notes" class="notte" v-if="!questPage">
-        <div v-bind:class="getClass(note.priotify)">
-          <h1>{{ note.title }}</h1>
-          <p>{{ trim(note.detail) }}</p>
-          <div class="detail">
-            <span>{{note.createdTime}}</span>
-            <span class="priotify"><span class="icon"></span></span>
-            <div class="tags">
-              <div class="tag" v-for="tag in note.tags">
-                #{{ tag }}
+        <router-link :to="{ path: 'view/'+note.link }">
+          <div v-bind:class="getClass(note.priotify)">
+            <h1>{{ note.title }}</h1>
+            <p>{{ trim(note.detail) }}</p>
+            <div class="detail">
+              <span>{{note.createdTime}}</span>
+              <span class="priotify"><span class="icon"></span></span>
+              <div class="tags">
+                <div class="tag" v-for="tag in note.tags">
+                  #{{ tag }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </router-link>
       </div>
       <div v-if="questPage">
         <h1>Hello Demo User</h1>
@@ -40,6 +42,7 @@ export default {
     }
   },
   mounted:function(){
+    _this = this;
     var user = this.user = window.userData;
     if(user != null){
       this.getNotes();
@@ -118,7 +121,7 @@ export default {
   color: #fff
   position: fixed
   right: 30px
-  bottom: 60px
+  bottom: 30px
   border-radius: 50%
   box-shadow: 0 1px 2px rgba(#000,0.1)
   &:hover .plus

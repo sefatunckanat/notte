@@ -67,6 +67,7 @@ export default{
 				var rootRef = firebase.database().ref();
 			  var storesRef = rootRef.child('notes/'+userID);
 			  var newStoreRef = storesRef.push();
+			  data.link = newStoreRef.key;
 			  newStoreRef.set(data).then(function(){
 					router.go(-1);
 			  });
