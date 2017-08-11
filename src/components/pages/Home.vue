@@ -1,6 +1,11 @@
 <template>
 	<div id="home">
     <div class="home_wrapper">
+      <div class="global_tags">
+        <span class="tag" v-for="tag in global_tags">
+          #{{tag}}
+        </span>
+      </div>
       <div v-for="note in notes" class="notte" v-if="!questPage">
         <router-link :to="{ path: 'view/'+note.link }">
           <div v-bind:class="getClass(note.priotify)">
@@ -38,6 +43,7 @@ export default {
     return {
       user:null,
       questPage: false,
+      global_tags:[],
       notes:[]
     }
   },
@@ -59,6 +65,11 @@ export default {
       var _this = this;
       get.on('value',function(response){
         _this.notes = response.val();
+        for (var key in response.val()) {
+          for(var i=0;i<response.val()[key].tags.length;i++){
+            _this.global_tags.push(response.val()[key].tags[i]);
+          }
+        }
       });
     },
     trim:function(str,length=200){
@@ -71,6 +82,14 @@ export default {
 
 <style lang="sass" scoped>
 @import "./../../assets/style/color.sass"
+.global_tags
+  padding: 10px
+  background: #fafafa
+  border-bottom: 1px solid $border
+  .tag
+    display: inline-block
+    padding: 5px
+    margin-right: 3px
 .notte
   padding: 10px 10px 0
   .content
@@ -112,7 +131,6 @@ export default {
           display: inline-block
           border-radius: 2px
           margin-left: 5px
-
 
 .new-notte
   width: 50px
